@@ -1,0 +1,23 @@
+def prefix_to_infix(expression):
+    stack = []
+    expression = expression[::-1]
+
+    operators = set(['+', '-', '*', '/', '^'])
+
+    for char in expression:
+        if char in operators:
+            operand1 = stack.pop()
+            operand2 = stack.pop()
+            infix = '(' + operand1 + char + operand2 + ')'
+            stack.append(infix)
+        else:
+            stack.append(char)
+
+    return stack.pop()
+prefix_expression = "*+AB-CD"
+infix_expression = prefix_to_infix(prefix_expression)
+print("Infix expression:", infix_expression)
+
+prefix_expression = "+*AB-CD"
+infix_expression = prefix_to_infix(prefix_expression)
+print("Infix expression:", infix_expression)
